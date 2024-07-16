@@ -1,0 +1,71 @@
+<form [formGroup]="driverForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="firstName">Nombre:</label>
+          <input id="firstName" formControlName="first_name" class="form-control" required>
+          <div *ngIf="driverForm.get('first_name').errors?.required && driverForm.get('first_name').touched" class="text-danger">
+              Nombre es requerido.
+          </div>
+      </div>
+
+      <div class="form-group col-md-6">
+          <label for="lastName">Apellido:</label>
+          <input id="lastName" formControlName="last_name" class="form-control" required>
+          <div *ngIf="driverForm.get('last_name').errors?.required && driverForm.get('last_name').touched" class="text-danger">
+              Apellido es requerido.
+          </div>
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="ssn">Número de Seguro Social (SSN):</label>
+          <input id="ssn" formControlName="ssn" class="form-control">
+      </div>
+
+      <div class="form-group col-md-6">
+          <label for="dob">Fecha de Nacimiento:</label>
+          <input type="date" id="dob" formControlName="dob" class="form-control">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-12">
+          <label for="address">Dirección:</label>
+          <input id="address" formControlName="address" class="form-control">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="city">Ciudad:</label>
+          <input id="city" formControlName="city" class="form-control">
+      </div>
+
+      <div class="form-group col-md-3">
+          <label for="zip">Código Postal:</label>
+          <input id="zip" formControlName="zip" class="form-control">
+      </div>
+
+      <div class="form-group col-md-3">
+          <label for="phone">Teléfono:</label>
+          <input id="phone" formControlName="phone" class="form-control">
+      </div>
+  </div>
+
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="license">Licencia:</label>
+          <input id="license" formControlName="license" class="form-control">
+      </div>
+
+      <div class="form-group col-md-6">
+          <div class="form-check">
+              <input type="checkbox" id="active" formControlName="active" class="form-check-input">
+              <label for="active" class="form-check-label">Activo:</label>
+          </div>
+      </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!driverForm.valid">Guardar</button>
+</form>

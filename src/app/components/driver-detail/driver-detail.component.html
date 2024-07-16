@@ -1,0 +1,34 @@
+<div *ngIf="driver" class="card driver-detail mt-4">
+  <div class="card-header">
+      <h2 class="card-title">Detalle del Conductor: {{ driver.firstName }} {{ driver.lastName }}</h2>
+  </div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <p><b>ID:</b> {{ driver.id }}</p>
+              <p><b>SSN:</b> {{ driver.ssn }}</p>
+              <p><b>Fecha de Nacimiento:</b> {{ driver.dob | date }}</p>
+          </div>
+          <div class="col-md-6">
+              <p><b>Dirección:</b> {{ driver.address }}</p>
+              <p><b>Ciudad:</b> {{ driver.city }}</p>
+              <p><b>Código Postal:</b> {{ driver.zip }}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <p><b>Teléfono:</b> {{ driver.phone }}</p>
+          </div>
+          <div class="col-md-6">
+              <p><b>Activo:</b> {{ driver.active ? 'Sí' : 'No' }}</p>
+          </div>
+      </div>
+  </div>
+  <div class="card-footer text-right">
+      <button class="btn btn-info mr-2" (click)="editDriver(driver.id)">Editar</button>
+      <button class="btn btn-danger" (click)="deleteDriver(driver.id)">Eliminar</button>
+  </div>
+</div>
+<div *ngIf="!driver" class="alert alert-info mt-4">
+  Cargando detalles...
+</div>

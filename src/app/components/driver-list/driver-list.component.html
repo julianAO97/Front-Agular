@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Drivers</h4>
+                    <button class="btn btn-primary btn-fill" (click)="createNewDriver()">Crear Nuevo Conductor</button>
+                </div>
+                <div class="content">
+                    <div *ngIf="loading">Loading...</div>
+                    <div *ngIf="!loading && drivers.length === 0">No hay conductores disponibles.</div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let driver of drivers">
+                                <td>{{ driver.first_name }}</td>
+                                <td>{{ driver.last_name }}</td> 
+                                <td class="text-right">
+                                    <button class="btn btn-danger btn-sm" (click)="confirmDelete(driver.id)">Delete</button>
+                                    <button class="btn btn-info btn-sm" (click)="selectDriver(driver.id)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div *ngIf="user" class="card user-detail mt-4">
+  <div class="card-header">
+      <h2 class="card-title">Detalle del Usuario:</h2>
+  </div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <p><b>ID:</b> {{ user.id }}</p>
+              <p><b>NOMBRE:</b> {{ user.name }}</p>
+              <p><b>CORREO:</b> {{ user.email  }}</p>
+          </div>
+          
+      </div>
+      <div class="row">
+          
+      </div>
+  </div>
+  <div class="card-footer text-right">
+      <button class="btn btn-info mr-2" (click)="editUser(user.id)">Editar</button>
+      <button class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button>
+  </div>
+</div>
+<div *ngIf="!user" class="alert alert-info mt-4">
+  Cargando detalles...
+</div>

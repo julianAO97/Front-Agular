@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from 'app/auth.service';
 declare const $: any;
 declare interface RouteInfo {
     path: string;
@@ -8,14 +8,16 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'pe-7s-graph', class: '' },
+    { path: '/dashboard', title: 'Bienvenido',  icon: 'pe-7s-graph', class: '' },
     { path: '/user', title: 'User Profile',  icon:'pe-7s-user', class: '' },
-    { path: '/table', title: 'Table List',  icon:'pe-7s-note2', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'pe-7s-news-paper', class: '' },
+    // { path: '/table', title: 'Table List',  icon:'pe-7s-note2', class: '' },
+    { path: '/driver', title: 'Conductores',  icon:'pe-7s-users', class: '' },
+    { path: '/vehicle', title: 'Vehiculos',  icon:'pe-7s-car', class: '' },
+    { path: '/route', title: 'Rutas',  icon:'pe-7s-compass', class: '' },
     { path: '/icons', title: 'Icons',  icon:'pe-7s-science', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'pe-7s-bell', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'pe-7s-rocket', class: 'active-pro' },
+    // { path: '/maps', title: 'Maps',  icon:'pe-7s-map-marker', class: '' },
+    // { path: '/notifications', title: 'Notifications',  icon:'pe-7s-bell', class: '' },
+    // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'pe-7s-rocket', class: 'active-pro' },
 ];
 
 @Component({
@@ -25,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -36,4 +38,7 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+  logout(): void {
+    this.authService.logout();
+}
 }

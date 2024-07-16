@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Usuarios</h4>
+                    <button class="btn btn-primary btn-fill" (click)="createNewUser()">Crear Nuevo Usuario</button>
+                </div>
+                <div class="content">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <
+                                <td class="text-right">
+                                    <button class="btn btn-danger btn-sm" (click)="confirmDelete(user.id)">Delete</button>
+                                    <button class="btn btn-info btn-sm" (click)="selectuser(user.id)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div *ngIf="route" class="card route-detail mt-4">
+  <div class="card-header">
+      <h2 class="card-title">Detalle de la Ruta:</h2>
+  </div>
+  <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <p><b>ID:</b> {{ route.id }}</p>
+              <p><b>NOMBRE:</b> {{ route.name }}</p>
+              <p><b>ORIGEN:</b> {{ route.origin  }}</p>
+          </div>
+          <div class="col-md-6">
+              <p><b>DESTINO:</b> {{ route.destination }}</p>
+              <p><b>HORA INICIO:</b> {{ route.start_time | Time}}</p>
+              <p><b>HORA FIN:</b> {{ route.end_time | Time}}</p>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <p><b>Descripcion:</b> {{ route.description }}</p>
+          </div>
+          <div class="col-md-6">
+            <p><b>CONDUCTOR:</b> {{ route.driver.first_name }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><b>VEHICULO:</b> {{ route.vehicle.plate }}</p>
+        </div>
+          <div class="col-md-6">
+              <p><b>Activo:</b> {{ route.active ? 'Sí' : 'No' }}</p>
+          </div>
+      </div>
+  </div>
+  <div class="card-footer text-right">
+      <button class="btn btn-info mr-2" (click)="editroute(route.id)">Editar</button>
+      <button class="btn btn-danger" (click)="deleteroute(route.id)">Eliminar</button>
+  </div>
+</div>
+<div *ngIf="!route" class="alert alert-info mt-4">
+  Cargando detalles...
+</div>

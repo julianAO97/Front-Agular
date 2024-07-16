@@ -3,19 +3,47 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../../home/home.component';
 import { UserComponent } from '../../user/user.component';
 import { TablesComponent } from '../../tables/tables.component';
+
 import { TypographyComponent } from '../../typography/typography.component';
 import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { DriverListComponent } from 'app/components/driver-list/driver-list.component';
+import { DriverFormComponent } from 'app/components/driver-form/driver-form.component';
+import { DriverDetailComponent } from 'app/components/driver-detail/driver-detail.component';
+import { VehicleListComponent } from 'app/components/vehicle-list/vehicle-list.component';
+import { VehicleFormComponent } from 'app/components/vehicle-form/vehicle-form.component';
+import { VehicleDetailComponent } from 'app/components/vehicle-detail/vehicle-detail.component';
+import { RouteListComponent } from 'app/components/route-list/route-list.component';
+import { RouteFormComponent } from 'app/components/route-form/route-form.component';
+import { RouteDetailComponent } from 'app/components/route-detail/route-detail.component';
+import { UserListComponent } from 'app/components/user-list/user-list.component';
+import { UserFormComponent } from 'app/components/user-form/user-form.component';
+import { UserDetailComponent } from 'app/components/user-detail/user-detail.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: HomeComponent },
-    { path: 'user',           component: UserComponent },
+    { path: 'user',           component: UserListComponent },
     { path: 'table',          component: TablesComponent },
+    { path: 'driver',     component: DriverListComponent },
+    { path: 'vehicle',     component: VehicleListComponent },
+    { path: 'route',     component: RouteListComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'drivers/new', component: DriverFormComponent },
+    { path: 'drivers/edit/:id', component: DriverFormComponent },
+    { path: 'drivers/detail/:id', component: DriverDetailComponent },
+    { path: 'vehicles/new', component: VehicleFormComponent },
+    { path: 'vehicles/edit/:id', component: VehicleFormComponent },
+    { path: 'vehicles/detail/:id', component: VehicleDetailComponent },
+    { path: 'routes/new', component: RouteFormComponent },
+    { path: 'routes/edit/:id', component: RouteFormComponent },
+    { path: 'routes/detail/:id', component: RouteDetailComponent },
+    { path: 'users/new', component: UserFormComponent },
+    { path: 'users/edit/:id', component: UserFormComponent },
+    { path: 'users/detail/:id', component: UserDetailComponent }
 ];

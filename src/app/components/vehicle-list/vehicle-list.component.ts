@@ -24,7 +24,7 @@ export class VehicleListComponent implements OnInit {
       next: (data: Vehicle[]) => {
         
         this.vehicles = data;
-       // console.log(this.vehicles);
+        console.log(this.vehicles);
         this.loading = false;
       },
       error: (error) => {

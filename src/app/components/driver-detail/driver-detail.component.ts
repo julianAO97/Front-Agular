@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DriverService } from '../../services/driver.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Driver } from '../../models/driver.model';
-import {Router} from '@angular/router';
+import { DriverService } from 'app/services/driver.service';
+
 
 @Component({
   selector: 'app-driver-detail',
@@ -11,14 +12,19 @@ export class DriverDetailComponent implements OnInit {
   @Input() driverId: number;
   driver: Driver;
 
-  constructor(private driverService: DriverService, private router: Router) {}
+  constructor(private driverService: DriverService, private router: Router,private activatedRoute: ActivatedRoute) {}
+
+
 
   public ngOnInit(): void {
-    this.loadDriver();
+    this.activatedRoute.params.subscribe(params => {
+      const id = +params['id'];
+    this.loadDriver(id);
+  });
   }
 
-  public loadDriver(): void {
-    this.driverService.getDriverById(this.driverId).subscribe({
+  public loadDriver(id: number): void {
+    this.driverService.getDriverById(id).subscribe({
       next: (data: Driver) => {
         this.driver = data;
       },

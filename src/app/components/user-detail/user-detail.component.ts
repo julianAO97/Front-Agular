@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'app/models/user.model';
 import { UserService } from 'app/services/user.service';
 
@@ -13,14 +13,17 @@ export class UserDetailComponent implements OnInit {
   @Input() userId: number;
   user: User;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.loadUser();
+    this.activatedRoute.params.subscribe(params => {
+      const id = +params['id'];
+    this.loadUser(id);
+  });
   }
 
-  public loadUser(): void {
-    this.userService.getUserById(this.userId).subscribe({
+  public loadUser(id: number): void {
+    this.userService.getUserById(id).subscribe({
       next: (data: User) => {
         this.user = data;
       },

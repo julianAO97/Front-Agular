@@ -1,26 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from 'app/models/route.model';
 import { RouteService } from 'app/services/route.service';
-
 
 @Component({
   selector: 'app-route-detail',
   templateUrl: './route-detail.component.html'
 })
 export class RouteDetailComponent implements OnInit {
-  @Input() routeId: number;
   route: Route;
 
-  constructor(private routeService: RouteService, private router: Router) {}
+  constructor(
+    private routeService: RouteService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   public ngOnInit(): void {
-    this.loadRoute();
+    this.activatedRoute.params.subscribe(params => {
+      const id = +params['id']; // El '+' convierte el string a número
+      this.loadRoute(id);
+    });
   }
 
-  public loadRoute(): void {
-    console.log(this.routeId)
-    this.routeService.getRouteById(this.routeId).subscribe({
+  public loadRoute(id: number): void {
+    this.routeService.getRouteById(id).subscribe({
       next: (data: Route) => {
         this.route = data;
       },
@@ -34,10 +38,10 @@ export class RouteDetailComponent implements OnInit {
     this.router.navigate(['routes/edit/', id]);
   }
 
- public deleteRoute(id: number): void {
+  public deleteRoute(id: number): void {
     this.routeService.deleteRoute(id).subscribe({
       next: () => {
-        console.log('route eliminado exitosamente.');
+        console.log('Route eliminado exitosamente.');
         this.route = null;
       },
       error: (error) => {

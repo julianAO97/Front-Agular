@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {Router} from '@angular/router';
 import { User } from 'app/models/user.model';
 import { UserService } from 'app/services/user.service';
@@ -22,9 +21,9 @@ export class UserListComponent implements OnInit {
     this.loading = true;
     this.userService.getUsers().subscribe({
       next: (data: User[]) => {
-        
+        console.log(data);
         this.users = data;
-        console.log(this.users);
+       console.log(this.users);
         this.loading = false;
       },
       error: (error) => {

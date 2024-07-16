@@ -7,22 +7,24 @@
                     <button class="btn btn-primary btn-fill" (click)="createNewUser()">Crear Nuevo Usuario</button>
                 </div>
                 <div class="content">
+                    <div *ngIf="loading">Loading...</div>
+                    <div *ngIf="!loading && users.length === 0">No hay vehiculos disponibles.</div>
+                   
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Correo</th>
-                                
+                                <th>Acciones</th>                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let user of users">
                                 <td>{{ user.name }}</td>
-                                <td>{{ user.email }}</td>
-                                <
+                                <td>{{ user.email }}</td>                                
                                 <td class="text-right">
                                     <button class="btn btn-danger btn-sm" (click)="confirmDelete(user.id)">Delete</button>
-                                    <button class="btn btn-info btn-sm" (click)="selectuser(user.id)">Edit</button>
+                                    <button class="btn btn-info btn-sm" (click)="selectUser(user.id)">Edit</button>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import {Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vehicle } from 'app/models/vehicle.model';
 import { VehicleService } from 'app/services/vehicle.service';
 
@@ -12,14 +11,17 @@ export class VehicleDetailComponent implements OnInit {
   @Input() vehicleId: number;
   vehicle: Vehicle;
 
-  constructor(private vehicleService: VehicleService, private router: Router) {}
+  constructor(private vehicleService: VehicleService, private router: Router,private activatedRoute: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.loadVehicle();
+    this.activatedRoute.params.subscribe(params => {
+      const id = +params['id']; // El '+' convierte el string a número
+    this.loadVehicle(id);
+  });
   }
 
-  public loadVehicle(): void {
-    this.vehicleService.getVehicleById(this.vehicleId).subscribe({
+  public loadVehicle(id: number): void {
+    this.vehicleService.getVehicleById(id).subscribe({
       next: (data: Vehicle) => {
         this.vehicle = data;
       },
